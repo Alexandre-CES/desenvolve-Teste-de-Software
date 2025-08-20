@@ -19,5 +19,8 @@
   "homepage": "https://github.com/Alexandre-CES/desenvolve-Teste-de-Software-Para-Web#readme",
   "devDependencies": {
     "cypress": "^14.5.4"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.35.0"
   }
 }
