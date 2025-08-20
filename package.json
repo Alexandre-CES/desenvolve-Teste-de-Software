@@ -1,0 +1,23 @@
+{
+  "name": "desenvolve-teste-de-software",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexandre-CES/desenvolve-Teste-de-Software-Para-Web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexandre-CES/desenvolve-Teste-de-Software-Para-Web/issues"
+  },
+  "homepage": "https://github.com/Alexandre-CES/desenvolve-Teste-de-Software-Para-Web#readme",
+  "devDependencies": {
+    "cypress": "^14.5.4"
+  }
+}
