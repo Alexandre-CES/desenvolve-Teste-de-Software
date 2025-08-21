@@ -1,33 +1,28 @@
-const { Builder, By } = require('selenium-webdriver');
+const { Builder, By, Key } = require('selenium-webdriver');
 
-async function testarFluxo() {
+async function testarFormulario() {
   let driver = await new Builder().forBrowser('chrome').build();
 
   try {
-    // Acessar a página inicial
-    await driver.get('https://the-internet.herokuapp.com');
+    // Acessa a página de login
+    await driver.get('https://the-internet.herokuapp.com/login');
 
-    // Clicar no link "Form Authentication" para acessar a página de login
-    await driver.findElement(By.linkText('Form Authentication')).click();
+    // Preenche o campo de nome de usuário
+    await driver.findElement(By.id('username')).sendKeys('tomsmith');
 
-    // Esperar um pouco para visualizar a navegação
-    await driver.sleep(2000);
+    // Preenche o campo de senha
+    await driver.findElement(By.id('password')).sendKeys('SuperSecretPassword!', Key.RETURN);
 
-    // Verificar se estamos na página de login
-    let titulo = await driver.getTitle();
-    console.log('Título da página:', titulo);
+    // Aguarda 7 segundos para visualizar o resultado
+    await driver.sleep(7000);
 
-    // Voltar para a página inicial
-    await driver.navigate().back();
-    await driver.sleep(2000);
-
-    // Acessar novamente a página de login
-    await driver.navigate().forward();
-    await driver.sleep(2000);
+    // Verifica se o login foi bem-sucedido
+    let mensagemSucesso = await driver.findElement(By.css('.flash.success')).getText();
+    console.log('Mensagem de sucesso:', mensagemSucesso);
 
   } finally {
     await driver.quit(); // Fecha o navegador
   }
 }
 
-testarFluxo();
+testarFormulario();
