@@ -1,11 +1,15 @@
-describe('Teste de Login', () => {
-  it('Preenche o formulário de login e envia', () => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+it('Deve retornar os dados corretos do post', () => {
+  cy.request('GET', 'https://jsonplaceholder.typicode.com/posts/1')
+    .then((response) => {
+      expect(response.body).to.have.property('id', 1); // Valida se o ID é 1
+      expect(response.body).to.have.property('title'); // Verifica se existe um título
+      expect(response.body).to.have.property('userId', 1); // Confirma se o usuário é o correto
+    });
+});
 
-    cy.get('#username').type('tomsmith'); // Preenche o usuário
-    cy.get('#password').type('SuperSecretPassword!'); // Preenche a senha
-    cy.get('.radius').click(); // Clica no botão de login
-
-    cy.contains('You logged into a secure area!'); // Verifica se o login foi bem-sucedido
-  });
+it('Deve responder em menos de 2 segundos', () => {
+  cy.request('GET', 'https://jsonplaceholder.typicode.com/posts/1')
+    .then((response) => {
+      expect(response.duration).to.be.lessThan(2000); // Valida o tempo de resposta
+    });
 });
