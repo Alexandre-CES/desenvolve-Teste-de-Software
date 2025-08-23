@@ -1,28 +1,20 @@
-const { Builder, By, Key } = require('selenium-webdriver');
+const { Builder } = require('selenium-webdriver');
 
-async function testarFormulario() {
+async function testarTituloPagina() {
   let driver = await new Builder().forBrowser('chrome').build();
 
   try {
-    // Acessa a página de login
-    await driver.get('https://the-internet.herokuapp.com/login');
+    // Acessa a página
+    await driver.get('https://the-internet.herokuapp.com/');
 
-    // Preenche o campo de nome de usuário
-    await driver.findElement(By.id('username')).sendKeys('tomsmith');
+    // Pega o título
+    let titulo = await driver.getTitle();
 
-    // Preenche o campo de senha
-    await driver.findElement(By.id('password')).sendKeys('SuperSecretPassword!', Key.RETURN);
-
-    // Aguarda 7 segundos para visualizar o resultado
-    await driver.sleep(7000);
-
-    // Verifica se o login foi bem-sucedido
-    let mensagemSucesso = await driver.findElement(By.css('.flash.success')).getText();
-    console.log('Mensagem de sucesso:', mensagemSucesso);
+    console.log('Título da página:', titulo);
 
   } finally {
     await driver.quit(); // Fecha o navegador
   }
 }
 
-testarFormulario();
+testarTituloPagina();
