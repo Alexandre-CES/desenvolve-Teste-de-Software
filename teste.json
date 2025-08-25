@@ -1,0 +1,27 @@
+{
+  "info": {
+    "name": "API Testes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Obter um post",
+      "request": {
+        "method": "GET",
+        "url": "https://jsonplaceholder.typicode.com/posts/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code é 200', function () {\n    pm.response.to.have.status(200);\n});",
+              "pm.test('Resposta contém um título', function () {\n    pm.expect(pm.response.json()).to.have.property('title');\n});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
